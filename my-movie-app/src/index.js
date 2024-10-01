@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import ReactDOM from 'react-dom/client'; // Modifică importul aici
 import App from './App';
+import './index.css';
 
-ReactDOM.render( <
+const root = ReactDOM.createRoot(document.getElementById('root')); // Creează un root
+root.render( <
     React.StrictMode >
     <
     App / >
     <
-    /React.StrictMode>,
-    document.getElementById('root')
+    /React.StrictMode>
 );
