@@ -34,8 +34,8 @@ function App() {
             /> <
             Route path = "/movies/:movieId/reviews"
             element = { < Reviews / > }
-            /> <
-            /Routes> <
+            /> < /
+            Routes > <
             /Suspense>
         );
     }
