@@ -1,22 +1,17 @@
-import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Modifică importul aici
-import App from './App';
-import './index.css';
+import ReactDOM from 'react-dom/client'; // Asigură-te că importi corect
+import App from './App'; // Calea către componenta ta principală
+import { BrowserRouter } from 'react-router-dom'; // Importă BrowserRouter
 
-const root = ReactDOM.createRoot(document.getElementById('root')); // Creează un root
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render( <
     React.StrictMode >
     <
-    App / >
-    <
-    /React.StrictMode>
-);
-ReactDOM.render( <
     BrowserRouter >
     <
     App / >
     <
-    /BrowserRouter>,
-    document.getElementById('root')
+    /BrowserRouter> <
+    /React.StrictMode>
 );
