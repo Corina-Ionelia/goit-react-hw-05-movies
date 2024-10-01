@@ -1,48 +1,75 @@
+// src/pages/Movies.js
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importă Link
+import { searchMovies } from '../api/api';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-function Movies() {
-    const [query, setQuery] = useState('');
-    const [movies, setMovies] = useState([]);
+const MoviesContainer = styled.div `
+  padding: 20px;
+`;
 
-    const handleSearch = async(e) => {
-        e.preventDefault();
+const Form = styled.form `
+  margin-bottom: 20px;
+`;
 
-        const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${query}`);
-        const data = await response.json();
+const Input = styled.input `
+  padding: 10px;
+  margin-right: 10px;
+`;
 
-        setMovies(data.results);
-        setQuery('');
-    };
+const Button = styled.button `
+  padding: 10px;
+`;
 
-    return ( <
-        div >
-        <
-        h1 > Search Movies < /h1> <
-        form onSubmit = { handleSearch } >
-        <
-        input type = "text"
-        value = { query }
-        onChange = {
-            (e) => setQuery(e.target.value) }
-        placeholder = "Search for a movie..." /
-        >
-        <
-        button type = "submit" > Search < /button> <
-        /form>
+const Movies = () => {
+        const [query, setQuery] = useState('');
+        const [movies, setMovies] = useState([]);
+        const [loading, setLoading] = useState(false);
 
-        <
-        ul > {
-            movies.map(movie => ( <
-                li key = { movie.id } >
-                <
-                Link to = { `/movies/${movie.id}` } > { movie.title } < /Link> <
-                /li>
-            ))
-        } <
-        /ul> <
-        /div>
-    );
-}
+        const handleSearch = async(e) => {
+            e.preventDefault();
+            setLoading(true);
 
-export default Movies;
+            try {
+                const searchResults = await searchMovies(query);
+                setMovies(searchResults);
+            } catch (error) {
+                console.error("Error searching movies:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        return ( <
+            MoviesContainer >
+            <
+            h1 > Search Movies < /h1> <
+            Form onSubmit = { handleSearch } >
+            <
+            Input type = "text"
+            value = { query }
+            onChange = {
+                (e) => setQuery(e.target.value)
+            }
+            placeholder = "Search for a movie" /
+            >
+            <
+            Button type = "submit" > Search < /Button> < /
+            Form > {
+                loading && < p > Loading... < /p>} <
+                ul > {
+                    movies.map(movie => ( <
+                        li key = { movie.id } >
+                        <
+                        Link to = { `/movies/${movie.id}` } > { movie.title } <
+                        /Link> < /
+                        li >
+                    ))
+                } <
+                /ul> < /
+                MoviesContainer >
+            );
+        };
+
+        export default Movies;

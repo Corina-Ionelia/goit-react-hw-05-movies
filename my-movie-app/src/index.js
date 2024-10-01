@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client'; // Modifică importul aici
 import App from './App';
@@ -10,4 +11,12 @@ root.render( <
     App / >
     <
     /React.StrictMode>
+);
+ReactDOM.render( <
+    BrowserRouter >
+    <
+    App / >
+    <
+    /BrowserRouter>,
+    document.getElementById('root')
 );
