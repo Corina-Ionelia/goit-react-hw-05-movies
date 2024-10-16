@@ -1,0 +1,77 @@
+/* MovieSearch.module.css */
+.movieSearch {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #000000;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.searchForm {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 70%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #c4c4c4;
+}
+
+.searchButton {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #c4c4c4;
+  border: 1px solid #989898;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.searchButton:hover {
+  background-color: #c4c4c4;
+  color: #000;
+}
+
+.moviesList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.movieItem {
+  text-align: center;
+  /* border: 1px solid #989898; */
+  /* border-radius: 5px; */
+}
+
+.movieItem a {
+  font-size: 1rem;
+  color: #c4c4c4;
+  text-decoration: none;
+}
+
+.moviePoster {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.moviePoster:hover {
+  transform: scale(1.05);
+}
+
+.noResult, .loadingMessage, .errorMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+}
